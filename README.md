@@ -41,7 +41,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/yourusername/Wechat_Public_article.git
+git clone https://github.com/Albert-Lsk/Wechat_Public_article.git
 cd Wechat_Public_article
 
 # 安装依赖
