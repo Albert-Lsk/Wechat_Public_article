@@ -159,13 +159,13 @@ black src/
 
 ## 📈 项目路线图
 
-### v1.0.0 (当前版本)
-- [x] 基础爬虫功能
-- [x] 反反爬策略
-- [x] 数据存储和管理
-- [x] 基础API接口
+### v1.0.0 (开发中)
+- [ ] 基础爬虫功能
+- [ ] 反反爬策略
+- [ ] 数据存储和管理
+- [ ] 基础API接口
 
-### v1.1.0 (开发中)
+### v1.1.0 (规划中)
 - [ ] 视频号数据支持
 - [ ] 增强的监控系统
 - [ ] 性能优化
@@ -179,10 +179,10 @@ black src/
 
 ## 📞 联系方式
 
-- **项目维护者**: [ALSKai](mailto:hust.lsk1995@gmail.com)
-- **问题反馈**: [GitHub Issues](https://github.com/ALSKai/Wechat_Public_article/issues)
-- **技术讨论**: [Discussions](https://github.com/ALSKai/Wechat_Public_article/discussions)
-- **文档网站**: [项目文档](https://ALSKai.github.io/Wechat_Public_article)
+- **项目维护者**: [Albert-Lsk](mailto:hust.lsk1995@gmail.com)
+- **问题反馈**: [GitHub Issues](https://github.com/Albert-Lsk/Wechat_Public_article/issues)
+- **技术讨论**: [Discussions](https://github.com/Albert-Lsk/Wechat_Public_article/discussions)
+- **文档网站**: [项目文档](https://Albert-Lsk.github.io/Wechat_Public_article)
 
 ## 📄 许可证
 
