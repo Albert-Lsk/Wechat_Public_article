@@ -1,0 +1,232 @@
+# 微信公众号爬虫配置文件
+# WeChat Public Account Crawler Configuration
+
+# 应用基础配置
+app:
+  name: "wechat-crawler"
+  version: "1.0.0"
+  environment: "development"  # development, testing, production
+  debug: true
+  log_level: "INFO"
+
+# 数据库配置
+database:
+  # 主数据库 (MySQL/PostgreSQL)
+  primary:
+    type: "mysql"  # mysql, postgresql
+    host: "localhost"
+    port: 3306
+    username: "${DB_USERNAME}"
+    password: "${DB_PASSWORD}"
+    database: "wechat_crawler"
+    charset: "utf8mb4"
+    pool_size: 10
+    max_overflow: 20
+    
+  # Redis 缓存
+  redis:
+    host: "localhost"
+    port: 6379
+    password: "${REDIS_PASSWORD}"
+    db: 0
+    max_connections: 10
+    
+  # MongoDB (可选，用于存储非结构化数据)
+  mongodb:
+    host: "localhost"
+    port: 27017
+    username: "${MONGO_USERNAME}"
+    password: "${MONGO_PASSWORD}"
+    database: "wechat_data"
+
+# 爬虫引擎配置
+crawler:
+  # 并发控制
+  concurrency:
+    max_workers: 5
+    requests_per_second: 10
+    retry_attempts: 3
+    retry_delay: 1  # seconds
+    
+  # 请求配置
+  requests:
+    timeout: 30
+    verify_ssl: true
+    allow_redirects: true
+    max_redirects: 5
+    
+  # 用户代理配置
+  user_agent:
+    rotate: true
+    custom_agents:
+      - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+      - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+      - "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+      
+  # 代理配置
+  proxy:
+    enabled: false
+    rotation: true
+    pool_size: 10
+    sources:
+      - type: "http"
+        host: "proxy.example.com"
+        port: 8080
+        username: "${PROXY_USERNAME}"
+        password: "${PROXY_PASSWORD}"
+
+# 微信API配置
+wechat:
+  # 公众号配置
+  official_account:
+    search_engines:
+      - name: "sogou"
+        base_url: "https://weixin.sogou.com"
+        enabled: true
+      - name: "wxrank"
+        base_url: "http://data.wxrank.com"
+        api_key: "${WXRANK_API_KEY}"
+        enabled: false
+        
+  # 视频号配置
+  channels:
+    enabled: false
+    api_endpoints:
+      - "https://finder.video.qq.com"
+      
+  # 搜索配置
+  search:
+    keywords_file: "data/keywords.txt"
+    max_results_per_keyword: 100
+    search_interval: 60  # seconds
+
+# 数据处理配置
+data_processing:
+  # 内容提取
+  content_extraction:
+    remove_html_tags: true
+    extract_images: true
+    extract_videos: false
+    min_content_length: 100
+    
+  # 数据清洗
+  cleaning:
+    remove_duplicates: true
+    normalize_text: true
+    remove_special_chars: false
+    
+  # 数据存储
+  storage:
+    save_raw_html: false
+    save_processed_content: true
+    export_formats: ["json", "csv"]
+    backup_enabled: true
+
+# 反反爬配置
+anti_detection:
+  # 请求间隔
+  delays:
+    min_delay: 1
+    max_delay: 5
+    random_delay: true
+    
+  # 会话管理
+  session:
+    rotate_sessions: true
+    session_lifetime: 3600  # seconds
+    max_requests_per_session: 100
+    
+  # IP轮换
+  ip_rotation:
+    enabled: false
+    max_requests_per_ip: 1000
+    
+  # 验证码处理
+  captcha:
+    auto_solve: false
+    service_provider: "2captcha"
+    api_key: "${CAPTCHA_API_KEY}"
+
+# 监控和日志
+monitoring:
+  # 日志配置
+  logging:
+    level: "INFO"
+    file_path: "data/logs/crawler.log"
+    max_file_size: "10MB"
+    backup_count: 5
+    rotation: "daily"
+    
+  # 性能监控
+  metrics:
+    enabled: true
+    prometheus_port: 8000
+    collect_system_metrics: true
+    
+  # 异常告警
+  alerts:
+    email:
+      enabled: false
+      smtp_server: "smtp.gmail.com"
+      smtp_port: 587
+      username: "${EMAIL_USERNAME}"
+      password: "${EMAIL_PASSWORD}"
+      recipients: ["admin@example.com"]
+    webhook:
+      enabled: false
+      url: "${WEBHOOK_URL}"
+
+# API服务配置
+api_server:
+  host: "0.0.0.0"
+  port: 8080
+  workers: 4
+  reload: true  # development only
+  
+  # API限流
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+    requests_per_hour: 1000
+    
+  # 认证配置
+  authentication:
+    enabled: false
+    jwt_secret: "${JWT_SECRET}"
+    token_expiration: 3600  # seconds
+
+# 任务调度配置
+scheduler:
+  enabled: true
+  timezone: "Asia/Shanghai"
+  
+  # 定时任务
+  jobs:
+    - name: "daily_article_sync"
+      schedule: "0 2 * * *"  # 每天凌晨2点
+      function: "sync_daily_articles"
+      enabled: true
+      
+    - name: "weekly_account_discovery"
+      schedule: "0 0 * * 0"  # 每周日凌晨
+      function: "discover_new_accounts"
+      enabled: true
+
+# 开发调试配置
+development:
+  # 数据采样
+  sample_mode: false
+  sample_ratio: 0.1
+  
+  # 测试数据
+  test_accounts:
+    - biz: "MzIzOTU0NTQ0MA=="
+      name: "test_account_1"
+    - biz: "MzAwMDAwMDAwMA=="
+      name: "test_account_2"
+      
+  # 调试选项
+  debug:
+    save_requests: false
+    save_responses: false
+    verbose_logging: true
