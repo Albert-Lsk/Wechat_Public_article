@@ -1,0 +1,139 @@
+# 项目目录结构
+
+```
+Wechat_Public_article/
+├── README.md                    # 项目说明文档
+├── LICENSE                      # 开源许可证
+├── CONTRIBUTING.md              # 贡献指南
+├── requirements.txt             # Python依赖包
+├── requirements-dev.txt         # 开发环境依赖
+├── .env.example                 # 环境变量模板
+├── .gitignore                   # Git忽略规则
+├── config.yaml                  # 配置文件示例
+├── docker-compose.yml           # Docker编排文件
+├── Dockerfile                   # Docker镜像构建文件
+│
+├── src/                         # 源代码目录
+│   ├── __init__.py
+│   ├── wechat_crawler/          # 核心爬虫模块
+│   │   ├── __init__.py
+│   │   ├── core/                # 核心功能
+│   │   │   ├── __init__.py
+│   │   │   ├── crawler.py       # 主爬虫类
+│   │   │   ├── parser.py        # 数据解析器
+│   │   │   ├── scheduler.py     # 任务调度器
+│   │   │   └── storage.py       # 数据存储
+│   │   ├── utils/               # 工具函数
+│   │   │   ├── __init__.py
+│   │   │   ├── proxy_pool.py    # 代理池管理
+│   │   │   ├── rate_limiter.py  # 频率限制
+│   │   │   ├── user_agent.py    # UA管理
+│   │   │   └── encryption.py    # 加密解密
+│   │   ├── api/                 # API接口
+│   │   │   ├── __init__.py
+│   │   │   ├── endpoints.py     # API端点
+│   │   │   ├── models.py        # 数据模型
+│   │   │   └── validators.py    # 参数验证
+│   │   └── config/              # 配置管理
+│   │       ├── __init__.py
+│   │       ├── settings.py      # 配置类
+│   │       └── database.py      # 数据库配置
+│
+├── docs/                        # 项目文档
+│   ├── README.md               # 文档首页
+│   ├── 技术术语全解析.md        # 技术术语指南
+│   ├── 开发者指南.md            # 开发者指南
+│   ├── api/                     # API文档
+│   │   ├── README.md
+│   │   ├── wechat_api.md       # 微信API文档
+│   │   └── data_models.md      # 数据模型文档
+│   ├── deployment/              # 部署文档
+│   │   ├── README.md
+│   │   ├── docker.md           # Docker部署
+│   │   ├── kubernetes.md       # K8s部署
+│   │   └── production.md       # 生产环境
+│   ├── best-practices/          # 最佳实践
+│   │   ├── README.md
+│   │   ├── anti-detection.md   # 反检测策略
+│   │   ├── performance.md      # 性能优化
+│   │   └── security.md         # 安全防护
+│   └── architecture/            # 架构文档
+│       ├── README.md
+│       ├── system-design.md    # 系统设计
+│       ├── data-flow.md        # 数据流程
+│       └── scalability.md      # 可扩展性
+│
+├── examples/                    # 示例代码
+│   ├── README.md
+│   ├── basic_crawler.py         # 基础爬虫示例
+│   ├── advanced_crawler.py      # 高级功能示例
+│   ├── api_client.py           # API客户端示例
+│   ├── data_analysis.py        # 数据分析示例
+│   └── distributed_setup/       # 分布式部署示例
+│       ├── master.py
+│       ├── worker.py
+│       └── config/
+│
+├── tests/                       # 测试代码
+│   ├── __init__.py
+│   ├── conftest.py             # Pytest配置
+│   ├── unit/                   # 单元测试
+│   │   ├── test_crawler.py
+│   │   ├── test_parser.py
+│   │   └── test_utils.py
+│   ├── integration/            # 集成测试
+│   │   ├── test_api.py
+│   │   └── test_workflow.py
+│   └── fixtures/               # 测试数据
+│       ├── sample_html.html
+│       └── sample_data.json
+│
+├── scripts/                     # 脚本工具
+│   ├── setup.sh               # 环境初始化脚本
+│   ├── deploy.sh              # 部署脚本
+│   ├── backup.py              # 数据备份脚本
+│   └── monitoring.py          # 监控脚本
+│
+├── data/                       # 数据目录
+│   ├── .gitkeep
+│   ├── samples/               # 样本数据
+│   ├── logs/                  # 日志文件
+│   └── exports/               # 导出数据
+│
+├── config/                     # 配置文件目录
+│   ├── development.yaml       # 开发环境配置
+│   ├── production.yaml        # 生产环境配置
+│   ├── testing.yaml          # 测试环境配置
+│   └── database.yaml         # 数据库配置
+│
+└── tools/                      # 开发工具
+    ├── code_formatter.py      # 代码格式化
+    ├── dependency_checker.py  # 依赖检查
+    └── performance_profiler.py # 性能分析
+```
+
+## 文件说明
+
+### 核心文件
+- **README.md**: 项目主要说明文档，包含快速开始指南
+- **LICENSE**: 开源许可证文件 (建议使用MIT)
+- **requirements.txt**: 生产环境Python依赖包列表
+- **config.yaml**: 主要配置文件模板
+
+### 源代码组织
+- **src/wechat_crawler/**: 核心业务逻辑模块
+- **src/wechat_crawler/core/**: 爬虫核心功能实现
+- **src/wechat_crawler/utils/**: 通用工具和辅助函数
+- **src/wechat_crawler/api/**: REST API接口实现
+
+### 文档系统
+- **docs/**: 完整的项目文档，支持多级目录
+- **examples/**: 可运行的示例代码和使用案例
+- **tests/**: 完整的测试套件，包含单元测试和集成测试
+
+### 部署和运维
+- **scripts/**: 自动化脚本，简化部署和维护
+- **config/**: 多环境配置文件管理
+- **tools/**: 开发和维护工具
+
+这个结构遵循了Python项目的最佳实践，便于维护和扩展。
