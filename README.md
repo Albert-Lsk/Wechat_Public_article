@@ -179,10 +179,10 @@ black src/
 
 ## 📞 联系方式
 
-- **项目维护者**: [Your Name](mailto:your.email@example.com)
-- **问题反馈**: [GitHub Issues](https://github.com/yourusername/Wechat_Public_article/issues)
-- **技术讨论**: [Discussions](https://github.com/yourusername/Wechat_Public_article/discussions)
-- **文档网站**: [项目文档](https://yourusername.github.io/Wechat_Public_article)
+- **项目维护者**: [ALSKai](mailto:hust.lsk1995@gmail.com)
+- **问题反馈**: [GitHub Issues](https://github.com/ALSKai/Wechat_Public_article/issues)
+- **技术讨论**: [Discussions](https://github.com/ALSKai/Wechat_Public_article/discussions)
+- **文档网站**: [项目文档](https://ALSKai.github.io/Wechat_Public_article)
 
 ## 📄 许可证
 
